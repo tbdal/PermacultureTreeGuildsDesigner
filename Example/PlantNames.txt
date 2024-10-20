@@ -1,0 +1,245 @@
+﻿Acer saccharum
+Achillea millefolium
+Actinidia arguta
+Actinidia chinensis
+Actinidia deliciosa
+Actinidia kolomikta
+Actinidia polygama
+Aegopodium podagraria
+Agastache anisata
+Akebia quinata
+Albizia julibrissin
+Allium fistulosum
+Allium tuberosum
+Allium ursinum
+Alnus cordata
+Alnus rubra
+Amelanchier alnifolia
+Amelanchier arborea 'Robin Hill'
+Amelanchier canadensis
+Amelanchier laevis
+Amelanchier lamarckii
+Amelanchier ovalis (= A. vulgaris)
+Amorpha fruticosa
+Araucaria graucana
+Arbutus unedo
+Armoracia rusticana
+Aronia melanocarpa
+Asimina triloba
+Asparagus officinalis
+Astragalus glycyphyllos
+Atriplex halimus
+Berberis aggregata
+Berberis koreana
+Berberis vulgaris
+Betula pendula
+Betula pubescens
+Brassica oleracea var. ramosa
+Bunias orientalis
+Calycanthus floridus
+Campanula persicifolia
+Caragana arborescens
+Carya illinoiensis
+Carya laciniosa
+Carya ovata
+Carya tomentosa
+Castanea mollissima
+Castanea pumila
+Castanea sativa
+Ceanothus americanus
+Celtis australis
+Cephalotaxus ssp.
+Chaenomeles japonica
+Chaenomeles superba
+Colutea arborescens
+Cornus florida
+Cornus kousa
+Cornus kousa chinensis
+Cornus mas
+Corylus avellana
+Corylus colurna
+Crambe maritima
+Crataegomespilus dardarii
+Crataegus azarolus
+Crataegus dubrovensis
+Crataegus ellwangeriana
+Crataegus laevigata
+Crataegus monogyna
+Crataegus pinnatifolia Major
+Crataegus schraderiana
+Crataegus tanacetifolia
+Cudrania tricuspidata
+Cydonia oblonga
+Cytisus scoparius
+Decaisnea fargesii
+Diospyros lotus
+Diplotaxis tenuifolia
+Disopyros kaki
+Disopyros virginiana
+Elaegnus multiflora
+Eleagnus angustifolia
+Eleagnus umbellata
+Eleagnus x ebbingei
+Eriobotrya japonica
+Fagus sylvatica
+Ficus carica
+Foeniculum vulgare
+Fragaria vesca
+Fraxinus excelsior
+Galium odoratum
+Gaultheria procumbens
+Gaultheria shallon
+Genista tinctoria
+Gingko biloba
+Gleditsia triacanthos
+Glycyrrhiza glabra
+Hablitzia
+Heliantus tuberosus
+Hemerocallis spp.
+Hippophae rhamnoides
+Hovenia dulcis
+Humulus lupulus
+Hydrangea serrata
+Juglans ailantifolia cordiformis
+Juglans cinerea
+Juglans nigra
+Juglans regia
+Juniperus communis
+Lamium album
+Lathyrus latifolius
+Lepidium latifolium
+Lespedeza bicolor
+Levisticum officinale
+Leycesteria formosa
+Lonicera caerulea var. kamtschatica
+Lupinus perennis
+Lycium barbarum
+Lycium chinense
+Maackia amurensis
+Magnolia kobus
+Mahonia aquifolium
+Malus domestica
+Malus Hybr.
+Malva alcea
+Malva moschata
+Matteuca struthiopteris
+Medicago sativa
+Melissa officinalis
+Mentha piperitum var. citrata
+Mentha suaveolens 
+Mentha x piperita
+Mespilus germanica
+Monarda didyma
+Moringa oleifera
+Morus alba (tatarica)
+Morus nigra
+Morus rubra
+Myrica gale
+Myrrhis odorata
+Origanum vulgare
+Orixa japonica
+Passiflora incarnata
+Paulownia elongata
+Paulownia tomentosa
+Phormium tenax
+Phyllostachys
+Pimpinella saxifraga
+Pinus spp.
+Plantago lanceolata
+Polygonum bistorta(Syn.:Bistorta officinalis)
+Poncirus trifoliata
+Potentilla anserina
+Prunus armeniaca L.
+Prunus avium
+Prunus cerasifera
+Prunus cerasifera
+Prunus cerasus
+Prunus cerasus x fruticosus
+Prunus domestica
+Prunus domestica insititia
+Prunus italica
+Prunus persica
+Prunus persica var. nucipersica;
+Prunus salicina
+Prunus spinosa
+Prunus syriaca
+Prunus tomentosa
+Prunus x cistena
+Pterocarya fraxinifolia
+Pyronia veitchii
+Pyrus communis
+Pyrus pyrifolia
+Quercus rotundifolia x robur
+Rheum rhabarbarum
+Rhus glabra
+Rhus thypina
+Ribes divaricatum
+Ribes divaricatum
+Ribes nigrum
+Ribes odoratum
+Ribes phoenicolasius
+Ribes rubrum
+Ribes uva-crispa
+Ribes x nidigrolaria
+Robina pseudoacacia
+Robina rectissima
+Rosa canina
+Rosa glauca
+Rosa rubiginosa
+Rosa rugosa
+Rosa villosa
+Rosa x dumalis
+Rosmarinus officinalis
+Rubus fruticosus
+Rubus idaeus
+Rubus illecebrosus
+Rubus nepalensis
+Rubus occidentalis
+Rubus pentalobus
+Rubus setchuenensis
+Rubus tricolor
+Rumex patienta
+Salix spp.
+Salvia officinalis
+Sambucus canadensis
+Sambucus nigra
+Sambucus racemosa
+Schisandra chinensis
+Shepherdia argentea
+Sium sisarum
+Solidago canadensis
+Sophora japonica
+Sorbaronia mitschurini
+Sorbus aria
+Sorbus aucuparia
+Sorbus 'Burka'
+Sorbus domestica
+Stachys affinis(Synonym: Stachys sieboldii)
+Staphylea pinnata
+Stellaria media
+Symphytum grandiflorum
+Symphytum ibericum
+Symphytum x uplandicum 'Bocking No 4'
+Taraxacum officinale
+Thymus vulgaris
+Tilia cordata
+Tilia x europaea
+Toona sinensis
+Trifolium pratense
+Trifolium repens
+Ugni molinae
+Urtica dioica
+Vaccinium arctostaphylos
+Vaccinium corymbosum
+Vaccinium macrocarpon
+Vaccinium uliginosum
+Valeriana officinalis
+Viburnum opulus var. americanum/trilobum
+Viola odorata
+Vitex agnus-castus
+Vitis vinifera
+Wisteria frutescens
+Zanthoxylum piperitum
+Zanthoxylum schinifolium
+Zanthoxylum simulans
+Ziziphus jujube
