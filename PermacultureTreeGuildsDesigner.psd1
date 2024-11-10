@@ -64,10 +64,10 @@
     FormatsToProcess       = @()
     
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-    NestedModules          = @("Import-PlantData.ps1", "ConvertTo-TreeCircle.ps1", "ConvertFrom-PlantList.ps1", "Test-PlantData.ps1", "Copy-ExamplePlantNames.ps1")
+    NestedModules          = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport      = @("Import-PlantData", "ConvertTo-TreeCircle", "ConvertFrom-PlantList", "Test-PlantData", "Copy-ExamplePlantNames") 
+    FunctionsToExport      = @( '*' ) 
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport        = @()
@@ -82,10 +82,10 @@
     DscResourcesToExport   = @()
     
     # List of all modules packaged with this module
-    ModuleList             = @("Import-PlantData.ps1", "ConvertTo-TreeCircle.ps1", "ConvertFrom-PlantList.ps1", "Test-PlantData.ps1", "Copy-ExamplePlantNames.ps1")
+    ModuleList             = @()
     
     # List of all files packaged with this module
-    FileList               = @("")
+    FileList               = @("Import-PlantData.ps1", "ConvertTo-TreeCircle.ps1", "ConvertFrom-PlantList.ps1", "Test-PlantData.ps1", "Copy-ExamplePlantNames.ps1")
     
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData            = @{}
