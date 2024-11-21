@@ -104,7 +104,12 @@ function global:Import-PlantData {
         Write-Verbose "Parsing NaturaDb data"
         $NaturaDbHtml = New-Object -Com "HTMLFile"
         if ($NaturaDbResponse.StatusCode -eq 200) {
-            $NaturaDbHtml.IHTMLDocument2_write([System.Text.Encoding]::Unicode.GetBytes($NaturaDbResponse.Content)) | Out-Null
+            try {
+                $NaturaDbHtml.write([System.Text.Encoding]::Unicode.GetBytes($NaturaDbResponse.Content)) | Out-Null
+            }
+            catch {
+                $NaturaDbHtml.IHTMLDocument2_write([System.Text.Encoding]::Unicode.GetBytes($NaturaDbResponse.Content)) | Out-Null
+            }
             $NaturaDbHtml.all.tags("tr") | 
             Where-Object { $_.parentElement.parentElement.className -eq "mt-1" } | ForEach-Object { 
                 $key = ($_.firstChild.innerText.Trim() -replace ":", "").Trim()
@@ -123,7 +128,13 @@ function global:Import-PlantData {
         Write-Verbose "Parsing PFAF data..."
         $PfafDbHtml = New-Object -Com "HTMLFile"
         if ($PfafResponse.StatusCode -eq 200) {
-            $PfafDbHtml.IHTMLDocument2_write([System.Text.Encoding]::Unicode.GetBytes($PfafResponse.Content)) | Out-Null
+            try {
+                $PfafDbHtml.write([System.Text.Encoding]::Unicode.GetBytes($PfafResponse.Content)) | Out-Null
+            }
+            catch {
+                $PfafDbHtml.IHTMLDocument2_write([System.Text.Encoding]::Unicode.GetBytes($PfafResponse.Content)) | Out-Null
+                <#Do this if a terminating exception happens#>
+            }
             Write-Verbose "Reading Main Table"
             $PfafDbHtml.all.tags("tr") | Where-Object {
                 $_.parentElement.parentElement.className -like "*table-striped*" 
