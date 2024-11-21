@@ -47,10 +47,10 @@ function global:Import-PlantData {
         $Name,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false)]
-        [string]$OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\",
+        [string]$OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\",
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false)]
-        [string]$OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\override.csv",
+        [string]$OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\override.csv",
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false)]
         [string[]]$NaturaDbPriorityFields = @("t_common-name_text")
@@ -167,164 +167,165 @@ function global:Import-PlantData {
 
         if ($NaturaDbResponse.StatusCode -ne 200 -and [string]::IsNullOrEmpty($PfafDbHtml.getElementById("ContentPlaceHolder1_lbldisplatinname").innerText)) {
             Write-Error "ERROR: `n`tNo data found for $Name. `n`tPlease check the spelling of the Plant $Name.`n`t`n`t" -ErrorAction SilentlyContinue
-        } else { 
+        }
+        else { 
 
-        $PfafPlantData = @{
-            "h_PFAF_URI"                  = $PfafUri    
-            "h_NaturaDB_URI"              = $NaturaDbUri
-            "b_sun-full_element"          = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/sun.jpg" })
-            "b_sun_mid_element"           = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/partsun.jpg" })
-            "b_sun_shadow_element"        = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/fullsun.jpg" })
-            "b_water-dry_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water1.jpg" })
-            "b_water-mid_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water2.jpg" })
-            "b_water-wet_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water3.jpg" })
-            "b_water-plant_element"       = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water4.jpg" })
-            "b_grow-speed-high_icon"      = $pysicals -like "*at a fast rate*" 
-            "b_grow-speed-low_icon"       = $pysicals -like "*at a slow rate*" 
-            "b_grow-speed-mid_icon"       = $pysicals -like "*at a medium rate*" 
-            "b_ph-very-acid_element"      = $pysicals -like "*pH:*very acid*soils.*"
-            "b_ph-acid_element"           = $pysicals -like "*pH:*mildly acid*soils.*"
-            "b_ph-neutral_element"        = $pysicals -like "*pH:*neutral*soils.*"
-            "b_ph-alkaline_element"       = $pysicals -like "*pH:mildly alkaline*soils.*"
-            "b_ph-very-alkaline_element"  = $pysicals -like "*pH:very alkaline*soils.*"
-            "b_ph-saline_element"         = $pysicals -like "*pH:*saline*soils.*"
-            "b_wind-breaking-on-sea_icon" = $pysicals -like "*tolerate maritime exposure*"
-            #"pysicals"                    = $pysicals
-            "t_common-name_text"          = ($PfafData["Common Name"] -split "," | Select-Object -First 1).Trim()
-            "t_latin-name_text"           = "$Name"
-            "t_height_text"               = $heigth
-            "t_width_text"                = $width
-            "t_eatable-score_text"        = $PfafData["Edibility Rating"] -replace "\((\d) of (\d)\)", '$1'
-            "b_eatable_element"           = $PfafData["Edibility Rating"] -replace "\((\d) of (\d)\)", '$1' -gt 2
-            "t_climate-zone_text"         = $PfafData["USDA hardiness"] 
-            "t_meds-score_text"           = $PfafData["Medicinal Rating"] -replace "\((\d) of (\d)\)", '$1'
-            "b_meds_element"              = $PfafData["Medicinal Rating"] -replace "\((\d) of (\d)\)", '$1' -gt 2
-            "t_material_score_text"       = $PfafData["Other Uses"] -replace "\((\d) of (\d)\)", '$1'
-            "b_material_element"          = $PfafData["Other Uses"] -replace "\((\d) of (\d)\)", '$1' -gt 2
-            "b_flower-0_element"          = $null
-            "b_flower-1_element"          = $null
-            "b_flower-2_element"          = $null
-            "b_flower-3_element"          = $null
-            "b_flower-4_element"          = $null
-            "b_flower-5_element"          = $null
-            "b_flower-6_element"          = $null
-            "b_flower-7_element"          = $null
-            "b_flower-8_element"          = $null
-            "b_flower-9_element"          = $null
-            "b_flower-10_element"         = $null
-            "b_flower-11_element"         = $null
-            "b_fruit-0_element"           = $null
-            "b_fruit-1_element"           = $null
-            "b_fruit-2_element"           = $null
-            "b_fruit-3_element"           = $null
-            "b_fruit-4_element"           = $null
-            "b_fruit-5_element"           = $null
-            "b_fruit-6_element"           = $null
-            "b_fruit-7_element"           = $null
-            "b_fruit-8_element"           = $null
-            "b_fruit-9_element"           = $null
-            "b_fruit-10_element"          = $null
-            "b_fruit-11_element"          = $null
-            "b_root-system_flat"          = $null
-            "b_root-system_heart"         = $null
-            "b_root-system_tap"           = $null
-            "b_root-system_deep"          = $null
-        }
-
-        $NaturaDbHtml = New-Object -Com "HTMLFile"
-        $NaturaDbPlantData = @{
-            "h_PFAF_URI"                  = $PfafUri    
-            "h_NaturaDB_URI"              = $NaturaDbUri
-            "b_sun-full_element"          = $NaturaDbData["Licht"] -like "*icon--x-sun_0*"
-            "b_sun_mid_element"           = $NaturaDbData["Licht"] -like "*icon--x-sun_1*"
-            "b_sun_shadow_element"        = $NaturaDbData["Licht"] -like "*icon--x-sun_2*"
-            "b_water-dry_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_0*"
-            "b_water-mid_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_1*"
-            "b_water-wet_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_2*"
-            "b_water-plant_element"       = $NaturaDbData["Wasser"] -like "*Wasserpflanze*" #$null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.title -eq "Water Plants" })
-            "b_grow-speed-high_icon"      = $null
-            "b_grow-speed-low_icon"       = $null
-            "b_grow-speed-mid_icon"       = $null
-            "b_ph-very-acid_element"      = $null
-            "b_ph-acid_element"           = $null
-            "b_ph-neutral_element"        = $null
-            "b_ph-alkaline_element"       = $null
-            "b_ph-very-alkaline_element"  = $null
-            "b_ph-saline_element"         = $null
-            "b_wind-breaking-on-sea_icon" = $null
-            "b_root-system_flat"          = $NaturaDbData["Wurzelsystem"] -like "*Flachwurzler*"
-            "b_root-system_heart"         = $NaturaDbData["Wurzelsystem"] -like "*Herzwurzler*"
-            "b_root-system_tap"           = $NaturaDbData["Wurzelsystem"] -like "*Pfahlwurzler*"
-            "b_root-system_deep"          = $NaturaDbData["Wurzelsystem"] -like "*Tiefwurzler*"
-            "t_common-name_text"          = $($NaturaDbHtml.all.tags("h1")[0].innerHtml -replace "<SPAN.*<[\\/]SPAN>").Trim()
-            "t_latin-name_text"           = "$Name"
-            "t_height_text"               = $NaturaDbData["Höhe"] -replace ".*>", "" -replace " ", ""
-            "t_width_text"                = $NaturaDbData["Breite"] -replace ".*>", "" -replace " ", ""
-            "t_eatable-score_text"        = $null
-            "b_eatable_element"           = $null
-            "t_climate-zone_text"         = $null
-            "t_meds-score_text"           = $null
-            "b_meds_element"              = $null
-            "t_material_score_text"       = $null
-            "b_material_element"          = $null
-        }
-        $Fruchtmonate = $NaturaDbData["Fruchtreife"] -split "`n" | Select-String "calendar__month__value"
-        $Fruchtmonate | ForEach-Object {
-            $NaturaDbData.Add( "b_fruit-" + [array]::IndexOf($Fruchtmonate, $_) + "_element", $_ -like "*is--active*" )
-        }
-        if ($null -eq $Fruchtmonate) {
-            $(0..11) | ForEach-Object {
-                $NaturaDbData.Add( "b_fruit-" + $_ + "_element", $false )
+            $PfafPlantData = @{
+                "h_PFAF_URI"                  = $PfafUri    
+                "h_NaturaDB_URI"              = $NaturaDbUri
+                "b_sun-full_element"          = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/sun.jpg" })
+                "b_sun_mid_element"           = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/partsun.jpg" })
+                "b_sun_shadow_element"        = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/fullsun.jpg" })
+                "b_water-dry_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water1.jpg" })
+                "b_water-mid_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water2.jpg" })
+                "b_water-wet_element"         = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water3.jpg" })
+                "b_water-plant_element"       = $null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.href -like "*/water4.jpg" })
+                "b_grow-speed-high_icon"      = $pysicals -like "*at a fast rate*" 
+                "b_grow-speed-low_icon"       = $pysicals -like "*at a slow rate*" 
+                "b_grow-speed-mid_icon"       = $pysicals -like "*at a medium rate*" 
+                "b_ph-very-acid_element"      = $pysicals -like "*pH:*very acid*soils.*"
+                "b_ph-acid_element"           = $pysicals -like "*pH:*mildly acid*soils.*"
+                "b_ph-neutral_element"        = $pysicals -like "*pH:*neutral*soils.*"
+                "b_ph-alkaline_element"       = $pysicals -like "*pH:mildly alkaline*soils.*"
+                "b_ph-very-alkaline_element"  = $pysicals -like "*pH:very alkaline*soils.*"
+                "b_ph-saline_element"         = $pysicals -like "*pH:*saline*soils.*"
+                "b_wind-breaking-on-sea_icon" = $pysicals -like "*tolerate maritime exposure*"
+                #"pysicals"                    = $pysicals
+                "t_common-name_text"          = ($PfafData["Common Name"] -split "," | Select-Object -First 1).Trim()
+                "t_latin-name_text"           = "$Name"
+                "t_height_text"               = $heigth
+                "t_width_text"                = $width
+                "t_eatable-score_text"        = $PfafData["Edibility Rating"] -replace "\((\d) of (\d)\)", '$1'
+                "b_eatable_element"           = $PfafData["Edibility Rating"] -replace "\((\d) of (\d)\)", '$1' -gt 2
+                "t_climate-zone_text"         = $PfafData["USDA hardiness"] 
+                "t_meds-score_text"           = $PfafData["Medicinal Rating"] -replace "\((\d) of (\d)\)", '$1'
+                "b_meds_element"              = $PfafData["Medicinal Rating"] -replace "\((\d) of (\d)\)", '$1' -gt 2
+                "t_material_score_text"       = $PfafData["Other Uses"] -replace "\((\d) of (\d)\)", '$1'
+                "b_material_element"          = $PfafData["Other Uses"] -replace "\((\d) of (\d)\)", '$1' -gt 2
+                "b_flower-0_element"          = $null
+                "b_flower-1_element"          = $null
+                "b_flower-2_element"          = $null
+                "b_flower-3_element"          = $null
+                "b_flower-4_element"          = $null
+                "b_flower-5_element"          = $null
+                "b_flower-6_element"          = $null
+                "b_flower-7_element"          = $null
+                "b_flower-8_element"          = $null
+                "b_flower-9_element"          = $null
+                "b_flower-10_element"         = $null
+                "b_flower-11_element"         = $null
+                "b_fruit-0_element"           = $null
+                "b_fruit-1_element"           = $null
+                "b_fruit-2_element"           = $null
+                "b_fruit-3_element"           = $null
+                "b_fruit-4_element"           = $null
+                "b_fruit-5_element"           = $null
+                "b_fruit-6_element"           = $null
+                "b_fruit-7_element"           = $null
+                "b_fruit-8_element"           = $null
+                "b_fruit-9_element"           = $null
+                "b_fruit-10_element"          = $null
+                "b_fruit-11_element"          = $null
+                "b_root-system_flat"          = $null
+                "b_root-system_heart"         = $null
+                "b_root-system_tap"           = $null
+                "b_root-system_deep"          = $null
             }
-        }
 
-        $Blütenmonate = $NaturaDbData["Blühzeit"] -split "`n" | Select-String "calendar__month__value"
-        $Blütenmonate | ForEach-Object {
-            $NaturaDbData."b_flower-$([array]::IndexOf($Blütenmonate, $_))_element" = $_ -like "*is--active*"
-        }
-        if ($null -eq $Blütenmonate) {
-            $(0..11) | ForEach-Object {
-                $NaturaDbData["b_flower-" + $_ + "_element"] = $false 
+            $NaturaDbHtml = New-Object -Com "HTMLFile"
+            $NaturaDbPlantData = @{
+                "h_PFAF_URI"                  = $PfafUri    
+                "h_NaturaDB_URI"              = $NaturaDbUri
+                "b_sun-full_element"          = $NaturaDbData["Licht"] -like "*icon--x-sun_0*"
+                "b_sun_mid_element"           = $NaturaDbData["Licht"] -like "*icon--x-sun_1*"
+                "b_sun_shadow_element"        = $NaturaDbData["Licht"] -like "*icon--x-sun_2*"
+                "b_water-dry_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_0*"
+                "b_water-mid_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_1*"
+                "b_water-wet_element"         = $NaturaDbData["Wasser"] -like "*icon--x-water_2*"
+                "b_water-plant_element"       = $NaturaDbData["Wasser"] -like "*Wasserpflanze*" #$null -ne ($PfafDbHtml.all.tags("img") | Where-Object { $_.title -eq "Water Plants" })
+                "b_grow-speed-high_icon"      = $null
+                "b_grow-speed-low_icon"       = $null
+                "b_grow-speed-mid_icon"       = $null
+                "b_ph-very-acid_element"      = $null
+                "b_ph-acid_element"           = $null
+                "b_ph-neutral_element"        = $null
+                "b_ph-alkaline_element"       = $null
+                "b_ph-very-alkaline_element"  = $null
+                "b_ph-saline_element"         = $null
+                "b_wind-breaking-on-sea_icon" = $null
+                "b_root-system_flat"          = $NaturaDbData["Wurzelsystem"] -like "*Flachwurzler*"
+                "b_root-system_heart"         = $NaturaDbData["Wurzelsystem"] -like "*Herzwurzler*"
+                "b_root-system_tap"           = $NaturaDbData["Wurzelsystem"] -like "*Pfahlwurzler*"
+                "b_root-system_deep"          = $NaturaDbData["Wurzelsystem"] -like "*Tiefwurzler*"
+                "t_common-name_text"          = $($NaturaDbHtml.all.tags("h1")[0].innerHtml -replace "<SPAN.*<[\\/]SPAN>").Trim()
+                "t_latin-name_text"           = "$Name"
+                "t_height_text"               = $NaturaDbData["Höhe"] -replace ".*>", "" -replace " ", ""
+                "t_width_text"                = $NaturaDbData["Breite"] -replace ".*>", "" -replace " ", ""
+                "t_eatable-score_text"        = $null
+                "b_eatable_element"           = $null
+                "t_climate-zone_text"         = $null
+                "t_meds-score_text"           = $null
+                "b_meds_element"              = $null
+                "t_material_score_text"       = $null
+                "b_material_element"          = $null
             }
-        }
-
-
-        # Replace empty values with data from Natura DB
-        $PlantData = $PfafPlantData
-        $PlantData.psobject.Properties | Where-Object {
-            $null -eq $PlantData."$_"
-        } | ForEach-Object {
-            $PlantData."$_" = $NaturaDbPlantData."$_"
-        }
-        
-        $LookUp.Keys | ForEach-Object {
-            if ( -not $PlantData.ContainsKey($LookUp[$_]) ) {
-                $PlantData[$LookUp[$_]] = $false
+            $Fruchtmonate = $NaturaDbData["Fruchtreife"] -split "`n" | Select-String "calendar__month__value"
+            $Fruchtmonate | ForEach-Object {
+                $NaturaDbData.Add( "b_fruit-" + [array]::IndexOf($Fruchtmonate, $_) + "_element", $_ -like "*is--active*" )
             }
-        }
+            if ($null -eq $Fruchtmonate) {
+                $(0..11) | ForEach-Object {
+                    $NaturaDbData.Add( "b_fruit-" + $_ + "_element", $false )
+                }
+            }
 
-        # if ($PlantData."t_width_text" -eq "") {
-        #     if (($pysicals -split "`n")[0] -match 'by (?<width>\d+(\.\d+)?)\s*(?<unit>m|cm)') {
-        #         $width = $Matches.width
-        #         $PlantData."t_width_text" = "$width - $width m"
-        #     }
-        # }
+            $Blütenmonate = $NaturaDbData["Blühzeit"] -split "`n" | Select-String "calendar__month__value"
+            $Blütenmonate | ForEach-Object {
+                $NaturaDbData."b_flower-$([array]::IndexOf($Blütenmonate, $_))_element" = $_ -like "*is--active*"
+            }
+            if ($null -eq $Blütenmonate) {
+                $(0..11) | ForEach-Object {
+                    $NaturaDbData["b_flower-" + $_ + "_element"] = $false 
+                }
+            }
+
+
+            # Replace empty values with data from Natura DB
+            $PlantData = $PfafPlantData
+            $PlantData.psobject.Properties | Where-Object {
+                $null -eq $PlantData."$_"
+            } | ForEach-Object {
+                $PlantData."$_" = $NaturaDbPlantData."$_"
+            }
         
-        # if ($PlantData."t_climate-zone_text" -eq "" -and $PlantData."t_climate-zone_text" -eq "Coming soon") {
-        #     $PlantData["t_climate-zone_text"] = ">$($NaturaDbData["frostverträglich"] -replace ".*bis Klimazone (\d[abc]?).*", '$1')"
-        # }
+            $LookUp.Keys | ForEach-Object {
+                if ( -not $PlantData.ContainsKey($LookUp[$_]) ) {
+                    $PlantData[$LookUp[$_]] = $false
+                }
+            }
+
+            # if ($PlantData."t_width_text" -eq "") {
+            #     if (($pysicals -split "`n")[0] -match 'by (?<width>\d+(\.\d+)?)\s*(?<unit>m|cm)') {
+            #         $width = $Matches.width
+            #         $PlantData."t_width_text" = "$width - $width m"
+            #     }
+            # }
         
-        # if ($PlantData."t_common-name_text" -eq "") {
-        #     $PlantData."t_common-name_text" = $($($NaturaDbHtml.all.tags("h1")[0].innerHtml -replace "<SPAN.*>(.*)<[\\/]SPAN>", "`$1") -split ",")[0]
-        # }
+            # if ($PlantData."t_climate-zone_text" -eq "" -and $PlantData."t_climate-zone_text" -eq "Coming soon") {
+            #     $PlantData["t_climate-zone_text"] = ">$($NaturaDbData["frostverträglich"] -replace ".*bis Klimazone (\d[abc]?).*", '$1')"
+            # }
         
-        $OverrideFields = $OverrideData | Where-Object {
-            $_."t_latin-name_text" -eq $PlantData."t_latin-name_text"
-        }
-        $OverrideFields.psobject.Properties | Where-Object { -not [string]::IsNullOrWhiteSpace($_.Value) -and $_.Value -ne "???" } | ForEach-Object {
-            $PlantData[$_.Name] = $_.Value
-        }
-        ConvertFrom-HashTable $PlantData
+            # if ($PlantData."t_common-name_text" -eq "") {
+            #     $PlantData."t_common-name_text" = $($($NaturaDbHtml.all.tags("h1")[0].innerHtml -replace "<SPAN.*>(.*)<[\\/]SPAN>", "`$1") -split ",")[0]
+            # }
+        
+            $OverrideFields = $OverrideData | Where-Object {
+                $_."t_latin-name_text" -eq $PlantData."t_latin-name_text"
+            }
+            $OverrideFields.psobject.Properties | Where-Object { -not [string]::IsNullOrWhiteSpace($_.Value) -and $_.Value -ne "???" } | ForEach-Object {
+                $PlantData[$_.Name] = $_.Value
+            }
+            ConvertFrom-HashTable $PlantData
         }
     }
 }

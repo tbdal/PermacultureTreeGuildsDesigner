@@ -7,7 +7,7 @@
         [string]$SvgPath,
 
         [Parameter(Mandatory = $false)]
-        [string]$OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\",
+        [string]$OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\",
 
         [Parameter(Mandatory = $false)]
         [int]$Scale = 20,

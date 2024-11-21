@@ -31,7 +31,7 @@ function global:Test-PlantData {
         $PlantData,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false)]
-        [string]$OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\override.csv"
+        [string]$OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\override.csv"
     )
 
     Begin {

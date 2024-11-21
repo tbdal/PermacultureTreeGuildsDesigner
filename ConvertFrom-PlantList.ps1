@@ -35,27 +35,27 @@ function global:ConvertFrom-PlantList {
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [String]
-        $Path = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\PlantNames.txt",
+        $Path = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\PlantNames.txt",
         
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\",
+        $OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\",
 
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\override.csv",
+        $OverrideFile = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\override.csv",
 
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $AssetPath = "$(Split-Path -Parent $PSScriptRoot)\PermacultureDesignManagementGame\Assets",
+        $AssetPath = "$((Get-Module PermacultureTreeGuildsDesigner).ModuleBase)\Assets",
 
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [int[]]
-        $Scales = $(10, 20, 50, 100)
+        $Scales = $(1, 10, 20, 50, 100)
     )
 
     Begin {
@@ -76,6 +76,7 @@ function global:ConvertFrom-PlantList {
         Write-Progress -Id 2 -Completed -Activity "Downloading plant data"
 
         Write-Progress -Activity "Processing PlantList" -Status "Converting to SVG Tree cycles" -PercentComplete 66 -Id 1
+        Export-Clixml -Path "$OutputPath\PlantData.xml" -InputObject $PlantData -Encoding utf8
         $PlantData | ForEach-Object { 
             $Plant = $_
             $SvgFiles | ForEach-Object {
@@ -94,6 +95,6 @@ function global:ConvertFrom-PlantList {
     }
 
     End {
-        
+        $PlantData 
     }
 }

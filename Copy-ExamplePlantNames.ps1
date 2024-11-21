@@ -30,7 +30,7 @@ function global:Copy-ExamplePlantNames {
         [Parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
         [String]
-        $OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureDesignManagementGame\PlantNames.txt",
+        $OutputPath = "$([Environment]::GetFolderPath("MyDocuments"))\PermacultureTreeGuildsDesigner\PlantNames.txt",
 
         [Parameter(Mandatory = $false)]
         [ValidateScript({ Test-Path -Path $filePath -PathType Leaf })]
