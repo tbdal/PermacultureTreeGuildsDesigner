@@ -11,7 +11,7 @@
     RootModule             = ''
     
     # Version number of this module.
-    ModuleVersion          = '1.0'
+    ModuleVersion          = '1.2'
     
     # ID used to uniquely identify this module
     GUID                   = '32ee900c-e9d2-4356-ad80-461e9327d820'
@@ -67,7 +67,7 @@
     NestedModules          = @( "PermacultureTreeGuildsDesigner.psm1" )
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport      = @( '*' ) 
+    FunctionsToExport      = @( "Import-PlantData", "ConvertTo-TreeCircle", "ConvertFrom-PlantList", "Test-PlantData", "Copy-ExamplePlantNames" ) 
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport        = @()

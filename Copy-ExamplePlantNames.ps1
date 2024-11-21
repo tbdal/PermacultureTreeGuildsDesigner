@@ -35,7 +35,7 @@ function global:Copy-ExamplePlantNames {
         [Parameter(Mandatory = $false)]
         [ValidateScript({ Test-Path -Path $filePath -PathType Leaf })]
         [String]
-        $Path = "$(Split-Path -Parent $PSScriptRoot)/PermacultureDesignManagementGame/Example/PlantNames.txt"
+        $Path = "$((Get-Module PermacultureTreeGuildsDesigner).ModuleBase)/Example/PlantNames.txt"
     )
 
     Begin {
