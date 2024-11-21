@@ -16,7 +16,6 @@
         [double]$pxPerMm = 0.264583
     
     )
-
     
     $FileBaseName = $(Split-Path $SvgPath -Leaf) -replace ".svg", ""
     if ([string]::IsNullOrEmpty($PlantData.'t_common-name_text')) {
